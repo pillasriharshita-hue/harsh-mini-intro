@@ -3,21 +3,6 @@ if (new URLSearchParams(location.search).has("debug")) {
   document.body.classList.add("debug");
 }
 
-// On portrait mobile, auto-center the horizontal scroll so the girl is visible
-function centerHorizontally() {
-  if (window.matchMedia("(orientation: portrait)").matches) {
-    const page = document.querySelector(".page");
-    if (page) {
-      const offset = (page.scrollWidth - window.innerWidth) / 2;
-      window.scrollTo({ left: offset, top: 0, behavior: "instant" });
-    }
-  }
-}
-window.addEventListener("load", centerHorizontally);
-window.addEventListener("resize", centerHorizontally);
-window.addEventListener("orientationchange", () => {
-  setTimeout(centerHorizontally, 100);
-});
 
 // Smooth fade-out when navigating to another internal page
 document.addEventListener("click", (e) => {

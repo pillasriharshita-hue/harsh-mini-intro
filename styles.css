@@ -186,29 +186,34 @@ body.debug .hotspot {
   outline: 2px dashed #ff0044;
 }
 
-/* ---- Portrait mobile: fill full screen height, overflow horizontally ---- */
+/* ---- Portrait mobile: use 9:16 portrait image, fit viewport ---- */
 @media (orientation: portrait) {
   body {
-    display: block;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
   .page {
-    display: inline-block;
-    height: 100vh;
-    height: 100svh; /* small viewport height for mobile browsers */
-    width: auto;
-    aspect-ratio: 1366 / 768;
-    white-space: normal;
-    vertical-align: top;
+    width: min(100vw, calc(100svh * 9 / 16));
+    height: min(100svh, calc(100vw * 16 / 9));
+    aspect-ratio: 9 / 16;
   }
+
+  /* Portrait hotspot positions (% of 540x960 image) */
+  .hs-camera      { left: 2%;  top: 4%;  width: 24%; height: 14%; }
+  .hs-email       { left: 28%; top: 0%;  width: 20%; height: 13%; }
+  .hs-music       { left: 28%; top: 10%; width: 28%; height: 15%; }
+  .hs-hell-no     { left: 13%; top: 46%; width: 25%; height: 6%;  }
+  .hs-message-her { left: 38%; top: 46%; width: 25%; height: 6%;  }
+  .hs-exit        { left: 4%;  top: 3%;  width: 24%; height: 13%; }
 }
 
-/* ---- Landscape: fill viewport ---- */
+/* ---- Landscape: fill viewport with original landscape image ---- */
 @media (orientation: landscape) {
   .page {
     height: 100vh;
     width: auto;
+    aspect-ratio: 1366 / 768;
   }
 }
