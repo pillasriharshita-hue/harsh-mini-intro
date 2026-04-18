@@ -201,12 +201,12 @@ body.debug .hotspot {
   }
 
   /* Portrait hotspot positions (% of 540x960 image) */
-  .hs-camera      { left: 2%;  top: 4%;  width: 24%; height: 14%; }
-  .hs-email       { left: 28%; top: 0%;  width: 20%; height: 13%; }
-  .hs-music       { left: 28%; top: 10%; width: 28%; height: 15%; }
-  .hs-hell-no     { left: 13%; top: 46%; width: 25%; height: 6%;  }
-  .hs-message-her { left: 38%; top: 46%; width: 25%; height: 6%;  }
-  .hs-exit        { left: 4%;  top: 3%;  width: 24%; height: 13%; }
+  .hs-camera      { left: 0%;  top: 6%;  width: 28%; height: 14%; }
+  .hs-email       { left: 28%; top: 1%;  width: 22%; height: 12%; }
+  .hs-music       { left: 27%; top: 10%; width: 31%; height: 16%; }
+  .hs-hell-no     { left: 13%; top: 46%; width: 24%; height: 7%;  }
+  .hs-message-her { left: 38%; top: 46%; width: 24%; height: 7%;  }
+  .hs-exit        { left: 4%;  top: 2%;  width: 23%; height: 13%; }
 }
 
 /* ---- Landscape: fill viewport with original landscape image ---- */
