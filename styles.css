@@ -20,6 +20,22 @@ body {
   min-height: 100vh;
 }
 
+/* Page 1: blend the empty bars into the sky/grass of the composite */
+body.bg-page-1 {
+  background: linear-gradient(
+    to bottom,
+    #7cc0f2 0%,
+    #7cc0f2 50%,
+    #4a7c2e 50%,
+    #3e6a25 100%
+  );
+}
+
+/* Page 2: solid purple to match the composite */
+body.bg-page-2 {
+  background: #7a2dd6;
+}
+
 .page {
   position: relative;
   width: 100vw;
@@ -43,13 +59,73 @@ body {
   display: block;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background 120ms ease, transform 120ms ease;
+  border-radius: 10px;
+  transition: background 120ms ease, transform 120ms ease, box-shadow 200ms ease;
+  animation: pulse-glow 2.4s ease-in-out infinite;
 }
 
 .hotspot:active {
-  transform: scale(0.96);
-  background: rgba(255, 255, 255, 0.15);
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+/* Stagger the pulses so all icons don't flash in sync */
+.hs-camera      { animation-delay: 0s;    }
+.hs-email       { animation-delay: 0.3s;  }
+.hs-music       { animation-delay: 0.6s;  }
+.hs-hell-no     { animation-delay: 0.9s;  }
+.hs-message-her { animation-delay: 1.2s;  }
+.hs-exit        { animation-delay: 0s;    }
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.45);
+  }
+}
+
+/* ---- Page enter fade-in ---- */
+.page {
+  animation: page-in 520ms ease-out both;
+}
+
+@keyframes page-in {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Page exit (added via JS on internal link click) ---- */
+body.leaving .page {
+  animation: page-out 320ms ease-in forwards;
+}
+
+@keyframes page-out {
+  to { opacity: 0; transform: scale(0.98); }
+}
+
+/* ---- Page 1 "landed" shake (one-shot after fade-in) ---- */
+.page-1 {
+  animation: page-in 520ms ease-out both, page-shake 0.6s ease-out 520ms 1;
+}
+
+@keyframes page-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .hotspot,
+  .page,
+  .page-1 {
+    animation: none !important;
+  }
 }
 
 /* ---- Page 1 hotspots (% based on 1366x768 composite) ---- */
