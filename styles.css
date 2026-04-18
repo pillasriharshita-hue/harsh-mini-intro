@@ -38,9 +38,9 @@ body.bg-page-2 {
 
 .page {
   position: relative;
-  width: 100vw;
-  max-width: 100%;
-  aspect-ratio: 1366 / 768;
+  width: min(100vw, calc(100svh * 9 / 16));
+  height: min(100svh, calc(100vw * 16 / 9));
+  aspect-ratio: 9 / 16;
   overflow: hidden;
 }
 
@@ -128,57 +128,14 @@ body.leaving .page {
   }
 }
 
-/* ---- Page 1 hotspots (% based on 1366x768 composite) ---- */
+/* ---- Hotspot positions (% of 540x960 portrait image) ---- */
 
-/* Dialog "Hell no!!" button */
-.hs-hell-no {
-  left: 23.5%;
-  top: 35.5%;
-  width: 9%;
-  height: 7%;
-}
-
-/* Dialog "Message HER" button */
-.hs-message-her {
-  left: 32.5%;
-  top: 35.5%;
-  width: 11%;
-  height: 7%;
-}
-
-/* Camera icon + "Know about my story" label */
-.hs-camera {
-  left: 50%;
-  top: 5%;
-  width: 14%;
-  height: 18%;
-}
-
-/* Ink bottle icon + "Email me" label */
-.hs-email {
-  left: 65%;
-  top: 3%;
-  width: 12%;
-  height: 20%;
-}
-
-/* CD icon + "my current fav songs" label */
-.hs-music {
-  left: 66%;
-  top: 20%;
-  width: 16%;
-  height: 17%;
-}
-
-/* ---- Page 2 hotspots ---- */
-
-/* Top-left Exit icon */
-.hs-exit {
-  left: 18%;
-  top: 3%;
-  width: 10%;
-  height: 14%;
-}
+.hs-camera      { left: 0%;  top: 6%;  width: 28%; height: 14%; }
+.hs-email       { left: 28%; top: 1%;  width: 22%; height: 12%; }
+.hs-music       { left: 27%; top: 10%; width: 31%; height: 16%; }
+.hs-hell-no     { left: 13%; top: 46%; width: 24%; height: 7%;  }
+.hs-message-her { left: 38%; top: 46%; width: 24%; height: 7%;  }
+.hs-exit        { left: 4%;  top: 2%;  width: 23%; height: 13%; }
 
 /* ---- Debug mode: add ?debug=1 to URL to visualize hotspots ---- */
 body.debug .hotspot {
@@ -186,34 +143,3 @@ body.debug .hotspot {
   outline: 2px dashed #ff0044;
 }
 
-/* ---- Portrait mobile: use 9:16 portrait image, fit viewport ---- */
-@media (orientation: portrait) {
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .page {
-    width: min(100vw, calc(100svh * 9 / 16));
-    height: min(100svh, calc(100vw * 16 / 9));
-    aspect-ratio: 9 / 16;
-  }
-
-  /* Portrait hotspot positions (% of 540x960 image) */
-  .hs-camera      { left: 0%;  top: 6%;  width: 28%; height: 14%; }
-  .hs-email       { left: 28%; top: 1%;  width: 22%; height: 12%; }
-  .hs-music       { left: 27%; top: 10%; width: 31%; height: 16%; }
-  .hs-hell-no     { left: 13%; top: 46%; width: 24%; height: 7%;  }
-  .hs-message-her { left: 38%; top: 46%; width: 24%; height: 7%;  }
-  .hs-exit        { left: 4%;  top: 2%;  width: 23%; height: 13%; }
-}
-
-/* ---- Landscape: fill viewport with original landscape image ---- */
-@media (orientation: landscape) {
-  .page {
-    height: 100vh;
-    width: auto;
-    aspect-ratio: 1366 / 768;
-  }
-}
