@@ -7,8 +7,6 @@
 html, body {
   width: 100%;
   min-height: 100vh;
-  background: #000;
-  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -20,7 +18,8 @@ body {
   min-height: 100vh;
 }
 
-/* Page 1: blend the empty bars into the sky/grass of the composite */
+/* Page 1 background: sky on top, grass on bottom — applied to html+body */
+html:has(body.bg-page-1),
 body.bg-page-1 {
   background: linear-gradient(
     to bottom,
@@ -31,7 +30,8 @@ body.bg-page-1 {
   );
 }
 
-/* Page 2: solid purple to match the composite */
+/* Page 2 background: solid purple — applied to html+body */
+html:has(body.bg-page-2),
 body.bg-page-2 {
   background: #7a2dd6;
 }
@@ -186,10 +186,22 @@ body.debug .hotspot {
   outline: 2px dashed #ff0044;
 }
 
-/* ---- Portrait mobile: keep landscape composition, scale to width ---- */
+/* ---- Portrait mobile: fill full screen height, overflow horizontally ---- */
 @media (orientation: portrait) {
+  body {
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
   .page {
-    width: 100vw;
+    display: inline-block;
+    height: 100vh;
+    height: 100svh; /* small viewport height for mobile browsers */
+    width: auto;
+    aspect-ratio: 1366 / 768;
+    white-space: normal;
+    vertical-align: top;
   }
 }
 
